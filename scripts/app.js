@@ -29,4 +29,8 @@ navigator.add("pgLogin", require("./pages/login/pgLogin"));
 
 
 Router.add("login", navigator);
+
+var loader = require("./loader");
+loader.load();
+
 Router.go("login/pgLogin");
