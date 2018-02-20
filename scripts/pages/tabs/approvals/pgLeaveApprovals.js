@@ -31,9 +31,15 @@ const Page_ = extend(PageDesign)(
 
 function onLoad(parentOnLoad) {
 	parentOnLoad();
+	this.safeAreaLayoutMode = true;
+	
+	this.layoutHeaderBar.dotIndicator.size = 2;
+//	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
+	
 	initTexts.call(this);
 	initListView.call(this);
 	initTopTabBar.call(this);
+
 }
 
 var firstOnShow = true;
@@ -104,7 +110,7 @@ function initListView() {
 }
 
 function initTopTabBar() {
- //  this.topTabBar.$$styleContext = {
+	//  this.topTabBar.$$styleContext = {
 	// 	classNames: ".toptabbar"
 	// };
 	//this.topTabBar.dispatch(pushClassNames(".toptabbar"));
@@ -113,7 +119,7 @@ function initTopTabBar() {
 	this.topTabBar.inactiveTextColor = "#9F9E9F";
 	this.topTabBar.activeBarColor = "#1775CF";
 	// componentContextPatch(this.topTabBar, "toptabbar");
-	
+
 	this.topTabBar.onChanged = function(index) {
 		var lists = [this.pendingList, this.approvedList];
 		this.data = lists[index];

@@ -1,16 +1,17 @@
 const extend = require('js-base/core/extend');
 const ScrollView = require("sf-core/ui/scrollview");
+const Page = require('sf-core/ui/page');
 
 const PageDesign = require("../../../ui/ui_pgOverview");
 
 
 const Page_ = extend(PageDesign)(
 	// Constructor
-	function(_super, params){
+	function(_super, params) {
 		// Initalizes super class for this page scope
 		_super(this, params);
 		this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
-		
+
 		initTexts.call(this);
 	}
 );
@@ -18,11 +19,16 @@ const Page_ = extend(PageDesign)(
 function onLoad(superOnLoad) {
 	superOnLoad();
 	wrapContentIntoScroll.call(this);
+	
+	this.layoutHeaderBar.dotIndicator.size = 5;
+	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
+
+	this.safeAreaLayoutMode = true;
 }
 
 function wrapContentIntoScroll() {
 	this.scrollView = new ScrollView({
-		flexGrow: 1	
+		flexGrow: 1
 	});
 	this.layout.removeChild(this.flexlayout500);
 	this.scrollView.addChild(this.flexlayout500);

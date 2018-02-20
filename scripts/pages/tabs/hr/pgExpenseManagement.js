@@ -7,7 +7,7 @@ const Image = require("sf-core/ui/image");
 const ItemExpense = require('../../../components/ItemExpense');
 const ListViewItem = require('sf-core/ui/listviewitem');
 const expenseMangement = require("../../../model/expense-management");
-const PageDesign = require("../../../ui/ui_pgExpanseManagement");
+const PageDesign = require("../../../ui/ui_pgExpenseManagement");
 const Router = require("sf-core/router");
 const System = require("sf-core/device/system");
 const addChild = require("@smartface/contx/lib/smartface/action/addChild");
@@ -26,12 +26,12 @@ const Page_ = extend(PageDesign)(
         this.expenseList = [];
         initListView.call(this);
         initFloatingMenu.call(this);
-    
-        this.onError = function(e){
+
+        this.onError = function(e) {
             console.log(e.message);
         }
     }
-    
+
 );
 
 var firstOnShow = true;
@@ -57,6 +57,11 @@ function onShow(parentOnShow) {
 function onLoad(parentOnLoad) {
     parentOnLoad();
     this.layoutHeaderBar.headerBarTitle.text = lang["pgExpenseManagement.pageTitle"];
+
+    this.layoutHeaderBar.dotIndicator.size = 3;
+    this.layoutHeaderBar.dotIndicator.currentIndex = 1;
+
+    this.safeAreaLayoutMode = true;
 }
 
 function initListView() {
@@ -69,8 +74,8 @@ function initListView() {
         var item = new ItemExpense();
         item.id = 200;
         myListViewItem.item = item;
-        this.dispatch(addChild("item"+(++itemIndex), myListViewItem));
-        myListViewItem.addChild(item,"child", "", function(style){
+        this.dispatch(addChild("item" + (++itemIndex), myListViewItem));
+        myListViewItem.addChild(item, "child", "", function(style) {
             style.width = null;
             return style;
         });
@@ -81,8 +86,7 @@ function initListView() {
         listViewItem.findChildById(200).expense = this.expenseList[index];
     }.bind(this);
 
-    this.listView.onRowSelected = function() {
-    };
+    this.listView.onRowSelected = function() {};
 }
 
 function initFloatingMenu() {

@@ -7,9 +7,11 @@ const System = require("sf-core/device/system");
 const Timer = require("sf-core/timer");
 const fingerprint = require("sf-extension-utils").fingerprint;
 const rau = require("sf-extension-utils").rau;
-const login =  require("../../lib/lgn");
+const login = require("../../lib/lgn");
 const Color = require("sf-core/ui/color");
 const ActionKeyType = require('sf-core/ui/actionkeytype');
+const Hardware = require('sf-core/device/hardware');
+const Screen = require('sf-core/device/screen');
 
 const PageDesign = require("../../ui/ui_pgLogin");
 
@@ -25,8 +27,12 @@ const Page_ = extend(PageDesign)(
 
 function onLoad(parentOnLoad) {
 	parentOnLoad && parentOnLoad();
+	
+	this.safeAreaLayoutMode = true;
+	
 	const page = this;
 	const signInAction = signin.bind(this.signinButton, this);
+	
 	page.usernameLayout.onActionButtonPress = function() {
 		page.passwordLayout.requestFocus();
 	};
@@ -49,10 +55,12 @@ function onShow(parentOnShow, params) {
 	parentOnShow && parentOnShow(params);
 	const page = this;
 	
+	console.log("Device.Screen.width: " + Screen.width);
+	console.log("Device.Screen.height: " + Screen.height);
+
 	this.usernameLayout.innerTextbox.ios.clearButtonEnabled = true;
 	this.passwordLayout.innerTextbox.ios.clearButtonEnabled = true;
 	// Reset sign in button status because if sign in animation ran it changes
-
 
 	this.signinButton.width = 250;
 	this.signinButton.alpha = 1;
@@ -83,6 +91,7 @@ function onShow(parentOnShow, params) {
 					}
 					console.log("after condifiton");
 					fingerprintResult && fingerprintResult.success(); //Important!
+					//System.vibrate();
 					Router.go("tabs");
 				});
 			});
@@ -131,8 +140,8 @@ function doLogin(page, username, password, callback) {
 	login.lgn({
 		username: username,
 		password: password
-	}, function(err, userData){
-		 	if (err) {
+	}, function(err, userData) {
+		if (err) {
 			alert(lang["pgLogin.invalidLogin"]);
 		}
 		callback && callback(err, userData);

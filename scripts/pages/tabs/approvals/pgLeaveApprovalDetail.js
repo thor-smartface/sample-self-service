@@ -10,9 +10,16 @@ const Page_ = extend(PageDesign)(
 		_super(this, params);
 		this._superOnShow = this.onShow;
 		this.onShow = onShow.bind(this);
+		this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
 		initTexts.call(this);
     }
 );
+
+function onLoad(superOnload) {
+	superOnload && superOnload();
+	
+	this.safeAreaLayoutMode = true;
+}
 
 function onShow(detail) {
 	if (typeof this._superOnShow === "function") this._superOnShow();

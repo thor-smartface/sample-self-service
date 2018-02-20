@@ -253,6 +253,7 @@ SMF.i18n.defineLanguage('tr', {
 	"fingerprintUpdateStoredCredentialsMessage": "Kaydededilmiş kullanıcı adı ve şifreni yeni kullanıcı adı ve şifren ile değiştirmek ister misin",
 	"useFingerprintTitle": "Parmak izi kullan",
 	"useFingerprintMessage": "Gelecekteki oturum açmalarında parmak izi kullanmak ister misin?",
+	"useFaceIDMessage": "Gelecekteki oturum açmalarında FaceID kullanmak ister misin?",
 	"scanFingerprintTitle": "Parmak izi ile oturum aç",
 	"scanFingerprintMessage": "Parmağını tarat",
 });

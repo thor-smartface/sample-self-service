@@ -18,6 +18,8 @@ function onLoad() {
     this.headerBar.backgroundColor = Color.create("#FFFFFF");
     this.statusBar.visible = true;
     this.statusBar.android && (this.statusBar.android.color = Color.create("#00A1F1"));
+    
+    this.safeAreaLayoutMode = true;
 }
 
 module && (module.exports = Page_);

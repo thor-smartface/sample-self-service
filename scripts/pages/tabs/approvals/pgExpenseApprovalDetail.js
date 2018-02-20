@@ -17,6 +17,8 @@ const Page_ = extend(PageDesign)(
 function onLoad(parentOnLoad){
 	if (typeof parentOnLoad === "function") parentOnLoad();
 	wrapContentIntoScroll.call(this);
+	
+	this.safeAreaLayoutMode = true;
 }
 
 function onShow(detail) {

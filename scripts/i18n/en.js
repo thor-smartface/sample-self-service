@@ -253,6 +253,7 @@ SMF.i18n.defineLanguage('en', {
 	"fingerprintUpdateStoredCredentialsMessage": "Would you like to update your stored username and password with newly entered username and password",
 	"useFingerprintTitle": "Use Fingerprint",
 	"useFingerprintMessage": "Would you like to use fingerprint login on your future logins?",
+	"useFaceIDMessage": "Would you like to use FaceID login on your future logins ?",
 	"scanFingerprintTitle": "Login with fingerprint",
 	"scanFingerprintMessage": "Scan your finger",
 	

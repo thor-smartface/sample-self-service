@@ -11,8 +11,15 @@ const Page_ = extend(PageDesign)(
 		// Initalizes super class for this page scope
 		_super(this);
 		this.onShow = onShow.bind(this, this.onShow);
+		this.onLoad = onLoad.bind(this, this.onLoad);
     }
 );
+
+function onLoad(superOnLoad) {
+	superOnLoad();
+	
+	this.safeAreaLayoutMode = true;
+}
 
 function onShow(parentOnShow) {
     parentOnShow();

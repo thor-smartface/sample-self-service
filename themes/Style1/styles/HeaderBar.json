@@ -1,11 +1,11 @@
 {
-  ".headerBar": {
-    "title": "title",
-    "titleColor": "#FFFFFF",
-    "visible": true,
-    "backgroundColor": "#45495A",
-    "&-login": {
-      "visible": false
-    }
-  }
+	".headerBar": {
+		"title": "title",
+		"titleColor": "#FFFFFF",
+		"visible": false,
+		"backgroundColor": "#45495A",
+		"&-login": {
+			"visible": false
+		}
+	}
 }

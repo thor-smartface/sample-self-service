@@ -6,18 +6,25 @@ const Router = require("sf-core/router");
 
 const Page_ = extend(PageDesign)(
 	// Constructor
-	function(_super, params){
+	function(_super, params) {
 		// Initalizes super class for this page scope
 		_super(this, params);
 		this.onShow = onShow.bind(this, this.onShow);
-		
+		this.onLoad = onLoad.bind(this, this.onLoad);
+
 		initTexts.call(this);
-		
-        this.onError = function(e){
-            console.log(e.message);
-        }
+
+		this.onError = function(e) {
+			console.log(e.message);
+		}
 	}
 );
+
+function onLoad(parentOnLoad) {
+	this.safeAreaLayoutMode = true;
+	parentOnLoad();
+
+}
 
 function onShow(parentOnShow) {
 	if (typeof parentOnShow === "function") parentOnShow();

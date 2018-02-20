@@ -20,6 +20,7 @@ const Page_ = extend(PageDesign)(
         // Initalizes super class for this page scope
         _super(this);
         this.onShow = onShow.bind(this, this.onShow.bind(this));
+        this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
 
         this.documents = [];
         Object.assign(
@@ -32,6 +33,15 @@ const Page_ = extend(PageDesign)(
         initHeaderBar.call(this);
     }
 );
+
+function onLoad(superOnLoad) {
+	superOnLoad();
+	
+	this.layoutHeaderBar.dotIndicator.size = 5;
+	this.layoutHeaderBar.dotIndicator.currentIndex = 4;
+	
+//	this.safeAreaLayoutMode = true;
+}
 
 var firstOnShow = true;
 

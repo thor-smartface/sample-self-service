@@ -16,7 +16,8 @@ const Page_ = extend(PageDesign)(
 
 		initListView.call(page);
 		initTexts.call(this);
-
+		
+		this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
 		this.onShow = function() {
 			announcement.getAnnouncements(function(err, announcements) {
 				if (err)
@@ -29,6 +30,15 @@ const Page_ = extend(PageDesign)(
 		}.bind(this);
 	}
 );
+
+function onLoad(superOnLoad) {
+	superOnLoad();
+	
+	this.layoutHeaderBar.dotIndicator.size = 5;
+	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
+	
+	this.safeAreaLayoutMode = true;
+}
 
 function initTexts() {
 	this.layoutHeaderBar.headerBarTitle.text = lang["pgAnnouncement.pageTitle"];

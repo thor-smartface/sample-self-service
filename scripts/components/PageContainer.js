@@ -23,7 +23,7 @@ function HRIndexConstructor(_super, params) {
         this.headerBar.visible = false;
         // if (System.OS === "iOS") {
         initSwipeView(this);
-        initDotIndicator(this);
+        // initDotIndicator(this);
         // }
     }.bind(this);
 
@@ -32,9 +32,6 @@ function HRIndexConstructor(_super, params) {
         typeof _superOnShow === "function" && _superOnShow(user);
         this.headerBar.visible = false;
     }.bind(this);
-
-    
-
 }
 
 HRIndexConstructor.$$styleContext = {
@@ -65,23 +62,23 @@ function initSwipeView(page) {
     page.layout.addChild(page.swipeView, "swipeview");
 }
 
-function initDotIndicator(page) {
-    page.dotIndicator = new DotIndicator();
-    page.layout.addChild(page.dotIndicator, "dotIndicator", ".flexlayout", {
-        top: 60,
-        height: 10,
-        flexProps: {
-            alignSelf: "CENTER",
-            positionType: "ABSOLUTE"
-        }
-    });
-    page.dotIndicator.size = page.childPages.length;
-    /*
-    page.dotIndicator.top = 60; //System.OS === "Android" ? 40 : 60;
-    page.dotIndicator.alignSelf = FlexLayout.AlignSelf.CENTER;
-    page.dotIndicator.positionType = FlexLayout.PositionType.ABSOLUTE;
-    */
-}
+// function initDotIndicator(page) {
+//     page.dotIndicator = new DotIndicator();
+//     page.layout.addChild(page.dotIndicator, "dotIndicator", ".flexlayout", {
+//         height: 50,
+//         top: 80,
+//         flexProps: {
+//             alignSelf: "CENTER",
+//             positionType: "ABSOLUTE"
+//         }
+//     });
+//     page.dotIndicator.size = page.childPages.length;
+//     /*
+//     page.dotIndicator.top = 60; //System.OS === "Android" ? 40 : 60;
+//     page.dotIndicator.alignSelf = FlexLayout.AlignSelf.CENTER;
+//     page.dotIndicator.positionType = FlexLayout.PositionType.ABSOLUTE;
+//     */
+// }
 
 function onChildPageChanged(index) {
     this.dotIndicator && (this.dotIndicator.currentIndex = index);
