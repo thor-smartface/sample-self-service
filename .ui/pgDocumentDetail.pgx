@@ -1,108 +1,116 @@
 {
 	"components": [
 		{
-			"type": "Page",
-			"id": "89ce-578e-c47c-44d6",
+			"className": ".page",
+			"id": "7bc4-3da7-08f9-4ed6",
 			"initialized": true,
+			"props": {
+				"children": [
+					"62c8-6132-1861-5e47",
+					"ce8f-965f-00be-5a99",
+					"040f-35d8-0ea8-902b"
+				],
+				"name": "pgDocumentDetail",
+				"orientation": "PORTRAIT",
+				"parent": null
+			},
+			"type": "Page",
 			"userProps": {
 				"flexProps": {}
 			},
-			"className": ".page",
-			"version": "6.6.0",
-			"props": {
-				"name": "pgDocumentDetail",
-				"children": [
-					"bac5-862b-7730-58d5",
-					"4204-9c42-426b-7701",
-					"65e0-23e5-f035-1275"
-				],
-				"parent": null,
-				"orientation": "PORTRAIT"
-			}
+			"version": "6.6.1"
 		},
 		{
-			"type": "StatusBar",
-			"id": "bac5-862b-7730-58d5",
-			"userProps": {},
 			"className": "",
+			"id": "62c8-6132-1861-5e47",
 			"props": {
-				"name": "statusBar",
 				"children": [],
-				"parent": "89ce-578e-c47c-44d6",
-				"isRemovable": false
+				"isRemovable": false,
+				"name": "statusBar",
+				"parent": "7bc4-3da7-08f9-4ed6"
+			},
+			"type": "StatusBar",
+			"userProps": {
+				"visible": true
 			}
 		},
 		{
-			"type": "HeaderBar",
-			"id": "4204-9c42-426b-7701",
-			"userProps": {
+			"className": ".headerBar",
+			"id": "ce8f-965f-00be-5a99",
+			"props": {
+				"children": [],
+				"isRemovable": false,
+				"name": "headerBar",
+				"parent": "7bc4-3da7-08f9-4ed6",
 				"title": "newPage001"
 			},
-			"className": ".headerBar",
-			"props": {
-				"name": "headerBar",
+			"type": "HeaderBar",
+			"userProps": {
 				"title": "newPage001",
-				"children": [],
-				"parent": "89ce-578e-c47c-44d6",
-				"isRemovable": false
+				"visible": true
 			}
 		},
 		{
+			"className": ".flexLayout .flexLayout-main",
+			"id": "040f-35d8-0ea8-902b",
+			"props": {
+				"children": [
+					"c343-585e-a7fd-1dd2",
+					"c442-0cff-c158-8eca"
+				],
+				"name": "mainLayout",
+				"parent": "7bc4-3da7-08f9-4ed6",
+				"usePageVariable": true
+			},
 			"type": "FlexLayout",
-			"id": "65e0-23e5-f035-1275",
 			"userProps": {
-				"usePageVariable": true,
-				"width": null,
-				"height": null,
 				"flexProps": {
 					"alignItems": "CENTER",
 					"justifyContent": "CENTER"
-				}
-			},
-			"className": ".flexLayout .flexLayout-main",
-			"props": {
-				"name": "mainLayout",
+				},
+				"height": null,
 				"usePageVariable": true,
-				"children": [
-					"ec33-5436-0955-5eda",
-					"0cb4-4626-3ef8-a5a2"
-				],
-				"parent": "89ce-578e-c47c-44d6"
+				"visible": true,
+				"width": null
 			}
 		},
 		{
-			"type": "ImageView",
-			"id": "ec33-5436-0955-5eda",
-			"userProps": {
-				"image": "add_photo.png",
-				"height": 100,
-				"width": 100,
-				"imageFillType": "ASPECTFIT",
-				"flexProps": {}
-			},
 			"className": ".imageView",
+			"id": "c343-585e-a7fd-1dd2",
 			"props": {
-				"name": "imageview42",
 				"children": [],
-				"parent": "65e0-23e5-f035-1275"
+				"name": "imageview42",
+				"parent": "040f-35d8-0ea8-902b",
+				"usePageVariable": true
+			},
+			"type": "ImageView",
+			"userProps": {
+				"flexProps": {},
+				"height": 100,
+				"image": "add_photo.png",
+				"imageFillType": "ASPECTFIT",
+				"usePageVariable": true,
+				"width": 100
 			}
 		},
 		{
-			"type": "Label",
-			"id": "0cb4-4626-3ef8-a5a2",
-			"userProps": {
-				"textAlignment": "MIDCENTER",
-				"text": "Please Upload Your Document",
-				"textColor": "rgba( 155, 155, 155, 1 )",
-				"font": {},
-				"flexProps": {}
-			},
 			"className": ".label",
+			"id": "c442-0cff-c158-8eca",
 			"props": {
-				"name": "label322",
-				"text": "Please Upload Your Document",
 				"children": [],
-				"parent": "65e0-23e5-f035-1275"
+				"name": "label322",
+				"parent": "040f-35d8-0ea8-902b",
+				"text": "Please Upload Your Document",
+				"usePageVariable": true
+			},
+			"type": "Label",
+			"userProps": {
+				"flexProps": {},
+				"font": {},
+				"text": "Please Upload Your Document",
+				"textAlignment": "MIDCENTER",
+				"textColor": "rgba( 155, 155, 155, 1 )",
+				"usePageVariable": true
 			}
 		}
 	]
