@@ -32,9 +32,6 @@ function onLoad(superOnLoad) {
 	superOnLoad();
 	wrapContentIntoScroll.call(this);
 	
-	this.layoutHeaderBar.dotIndicator.size = 5;
-    this.layoutHeaderBar.dotIndicator.currentIndex = 4;
-	
 	initTexts.call(this);
 	this.headerBar.itemColor = Color.WHITE;
 	

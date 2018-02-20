@@ -33,11 +33,6 @@ const Page_ = extend(PageDesign)(
 
 function onLoad(superOnLoad) {
 	superOnLoad();
-	
-	this.layoutHeaderBar.dotIndicator.size = 5;
-	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
-	
-	this.safeAreaLayoutMode = true;
 }
 
 function initTexts() {

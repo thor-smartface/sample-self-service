@@ -57,11 +57,6 @@ function onShow(parentOnShow) {
 function onLoad(parentOnLoad) {
     parentOnLoad();
     this.layoutHeaderBar.headerBarTitle.text = lang["pgExpenseManagement.pageTitle"];
-
-    this.layoutHeaderBar.dotIndicator.size = 3;
-    this.layoutHeaderBar.dotIndicator.currentIndex = 1;
-
-    this.safeAreaLayoutMode = true;
 }
 
 function initListView() {

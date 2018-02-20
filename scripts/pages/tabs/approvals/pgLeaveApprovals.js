@@ -31,10 +31,6 @@ const Page_ = extend(PageDesign)(
 
 function onLoad(parentOnLoad) {
 	parentOnLoad();
-	this.safeAreaLayoutMode = true;
-	
-	this.layoutHeaderBar.dotIndicator.size = 2;
-//	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
 	
 	initTexts.call(this);
 	initListView.call(this);

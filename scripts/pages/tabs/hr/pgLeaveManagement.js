@@ -80,11 +80,6 @@ function onLoad(parentOnLoad) {
     initListView(this.listView, this);
     initTopTabBar.call(this);
     initHeaderBar.call(this);
-    
-    this.layoutHeaderBar.dotIndicator.size = 3;
-	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
-    
-    this.safeAreaLayoutMode = true;
 }
 
 function loadChart(leaveRequestChartData) {

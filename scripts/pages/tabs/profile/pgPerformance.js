@@ -55,11 +55,6 @@ function onLoad(parentOnLoad) {
     parentOnLoad();
     const page = this;
     page.layoutHeaderBar.headerBarTitle.text = lang["pgPerformance.pageTitle"];
-
-    this.layoutHeaderBar.dotIndicator.size = 5;
-    this.layoutHeaderBar.dotIndicator.currentIndex = 3;
-
-    this.safeAreaLayoutMode = true;
 }
 
 function loadChart(series) {

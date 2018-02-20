@@ -14,11 +14,6 @@ const Page_ = extend(PageDesign)(
         this.onLoad = function() {
             typeof _superOnLoad === "function" && _superOnLoad();
 
-            this.layoutHeaderBar.dotIndicator.size = 5;
-            this.layoutHeaderBar.dotIndicator.currentIndex = 3;
-
-            this.safeAreaLayoutMode = true;
-
             this.layoutHeaderBar.headerBarTitle.text = lang["pgMeetingRoomReservations.pageTitle"];
             if (Data.getStringVariable("theme") === "Style1") {
                 this.comingSoon.image = Image.createFromFile("images://coming_soon.png");

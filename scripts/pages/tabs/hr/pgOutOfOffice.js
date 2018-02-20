@@ -26,10 +26,6 @@ function onLoad(parentOnLoad) {
 
 	wrapContentIntoScroll.call(this);
 	initTexts.call(this);
-
-	this.safeAreaLayoutMode = true;
-	this.layoutHeaderBar.dotIndicator.size = 3;
-	this.layoutHeaderBar.dotIndicator.currentIndex = 2;
 }
 
 function wrapContentIntoScroll() {

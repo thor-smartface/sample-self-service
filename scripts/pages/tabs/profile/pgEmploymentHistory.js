@@ -51,11 +51,6 @@ function onShow(parentOnShow) {
 function onLoad(parentOnLoad) {
     parentOnLoad();
     this.layoutHeaderBar.headerBarTitle.text = lang["pgEmploymentHistory.pageTitle"];
-    
-    this.layoutHeaderBar.dotIndicator.size = 5;
-	this.layoutHeaderBar.dotIndicator.currentIndex = 2;
-    
-    this.safeAreaLayoutMode = true;
 }
 
 var itemIndex = 0;

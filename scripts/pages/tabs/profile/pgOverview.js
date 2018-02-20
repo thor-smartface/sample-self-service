@@ -19,11 +19,6 @@ const Page_ = extend(PageDesign)(
 function onLoad(superOnLoad) {
 	superOnLoad();
 	wrapContentIntoScroll.call(this);
-	
-	this.layoutHeaderBar.dotIndicator.size = 5;
-	this.layoutHeaderBar.dotIndicator.currentIndex = 0;
-
-	this.safeAreaLayoutMode = true;
 }
 
 function wrapContentIntoScroll() {

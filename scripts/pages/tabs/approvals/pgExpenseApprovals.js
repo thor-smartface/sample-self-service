@@ -32,11 +32,6 @@ function onLoad(superOnload) {
 	initTexts.call(this);
 	initListView.call(this);
 	initTopTabBar.call(this);
-	
-	this.layoutHeaderBar.dotIndicator.size = 2;
-	this.layoutHeaderBar.dotIndicator.currentIndex = 1;
-	
-	this.safeAreaLayoutMode = true;
 }
 
 function onShow(parentOnShow) {
