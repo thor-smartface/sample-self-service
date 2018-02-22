@@ -63,7 +63,7 @@
 						"active": false
 					}
 				},
-				"playerPath": null
+				"playerPath": "/iosPlayer.zip"
 			},
 			"android": {
 				"scripts": "scripts",

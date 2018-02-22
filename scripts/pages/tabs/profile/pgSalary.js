@@ -18,6 +18,7 @@ const Page_ = extend(PageDesign)(
         this.onShow = onShow.bind(this, this.onShow.bind(this));
         this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
 
+
         // Don't change array object, you may alter it
         this.salaryList = [];
         initListView(this.listView, this.salaryList);
@@ -61,8 +62,8 @@ function loadChart(series) {
         webView: page.wvChart
     });
     page.wvChart.bounceEnabled = false;
-  
-    
+
+
     Object.assign(jet, {
         series: [{
             name: lang.performance,
@@ -132,7 +133,7 @@ function initListView(listView, data) {
         var salaryItem = new ItemSalary();
         salaryItem.id = 200;
         this.dispatch(addChild("item" + (++itemIndex), myListViewItem));
-        myListViewItem.addChild(salaryItem, "child", "", function(style){
+        myListViewItem.addChild(salaryItem, "child", "", function(style) {
             style.width = null;
             return style;
         });

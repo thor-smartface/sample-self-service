@@ -21,8 +21,9 @@ const Page_ = extend(PageDesign)(
 );
 
 function onLoad(parentOnLoad) {
-	this.safeAreaLayoutMode = true;
 	parentOnLoad();
+	
+	this.ios.safeAreaLayoutMode = true;
 
 }
 

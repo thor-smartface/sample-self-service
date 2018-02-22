@@ -19,7 +19,7 @@ function onLoad() {
     this.statusBar.visible = true;
     this.statusBar.android && (this.statusBar.android.color = Color.create("#00A1F1"));
     
-    this.safeAreaLayoutMode = true;
+    this.ios.safeAreaLayoutMode = true;
 }
 
 module && (module.exports = Page_);

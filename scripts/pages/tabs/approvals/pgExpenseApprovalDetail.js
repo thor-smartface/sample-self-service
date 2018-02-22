@@ -18,7 +18,7 @@ function onLoad(parentOnLoad){
 	if (typeof parentOnLoad === "function") parentOnLoad();
 	wrapContentIntoScroll.call(this);
 	
-	this.safeAreaLayoutMode = true;
+	this.ios.safeAreaLayoutMode = true;
 }
 
 function onShow(detail) {

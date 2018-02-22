@@ -18,7 +18,7 @@ const Page_ = extend(PageDesign)(
 function onLoad(superOnload) {
 	superOnload && superOnload();
 	
-	this.safeAreaLayoutMode = true;
+	this.ios.safeAreaLayoutMode = true;
 }
 
 function onShow(detail) {

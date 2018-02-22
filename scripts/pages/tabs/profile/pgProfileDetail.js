@@ -35,7 +35,7 @@ function onLoad(superOnLoad) {
 	initTexts.call(this);
 	this.headerBar.itemColor = Color.WHITE;
 	
-	this.safeAreaLayoutMode = true;
+	this.ios.safeAreaLayoutMode = true;
 }
 
 function wrapContentIntoScroll() {

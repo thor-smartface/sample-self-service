@@ -24,8 +24,8 @@ function HRIndexConstructor(_super, params) {
     this.onLoad = function() {
         typeof _superOnLoad === "function" && _superOnLoad();
         this.headerBar.visible = false;
-        this.safeAreaLayoutMode = true;
-        this.layout.backgroundColor = Color.create('#45495A');
+        this.ios.safeAreaLayoutMode = true;
+        this.layout.backgroundColor = Color.create("#45495A");
         // if (System.OS === "iOS") {
         initSwipeView(this);
         initDotIndicator(this);
@@ -60,7 +60,6 @@ function initSwipeView(page) {
     page.swipeView = new SwipeView({
         page: page,
         flexGrow: 1,
-        backgroundColo : Color.BLUE,
         pages: page.childPages,
         onPageSelected: onChildPageChanged.bind(page)
     });

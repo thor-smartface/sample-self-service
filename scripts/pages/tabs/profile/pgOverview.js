@@ -11,9 +11,9 @@ const Page_ = extend(PageDesign)(
 		// Initalizes super class for this page scope
 		_super(this, params);
 		this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
-
 		initTexts.call(this);
 	}
+
 );
 
 function onLoad(superOnLoad) {

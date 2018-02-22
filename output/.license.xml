@@ -3,8 +3,8 @@
         <CompanyName>Smartface Inc.</CompanyName>
         <LicenseName>Self Service</LicenseName>
         <SASVersion>v5.0.0</SASVersion>
-        <CreateDate>02.00.2018 13:05:12</CreateDate>
-        <ExpireDate>00.00.2028 13:05:12</ExpireDate>
+        <CreateDate>03.01.2018 10:12:34</CreateDate>
+        <ExpireDate>01.01.2028 10:12:34</ExpireDate>
         <LicenseType>Professional</LicenseType>
         <PackageType>iOS</PackageType>
         <PackageName>io.smartface.sample.selfservice</PackageName>
@@ -21,8 +21,8 @@
         <CompanyName>Smartface Inc.</CompanyName>
         <LicenseName>Self Service</LicenseName>
         <SASVersion>v5.0.0</SASVersion>
-        <CreateDate>02.00.2018 13:05:12</CreateDate>
-        <ExpireDate>00.00.2028 13:05:12</ExpireDate>
+        <CreateDate>03.01.2018 10:12:34</CreateDate>
+        <ExpireDate>01.01.2028 10:12:34</ExpireDate>
         <LicenseType>Professional</LicenseType>
         <PackageType>Android</PackageType>
         <PackageName>io.smartface.sample.selfservice</PackageName>

@@ -61,9 +61,10 @@ function initCallbacks() {
 
 function onLoad(superOnLoad) {
 	typeof superOnLoad === "function" && superOnLoad();
-	wrapContentIntoScroll.call(this);
+
+	this.ios.safeAreaLayoutMode = true;
 	
-	this.safeAreaLayoutMode = true;
+	wrapContentIntoScroll.call(this);
 
 	initTexts.call(this);
 	this.headerBar.itemColor = Color.WHITE;

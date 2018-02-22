@@ -28,7 +28,7 @@ const Page_ = extend(PageDesign)(
 function onLoad(parentOnLoad) {
 	parentOnLoad && parentOnLoad();
 	
-	this.safeAreaLayoutMode = true;
+	this.ios.safeAreaLayoutMode = true;
 	
 	const page = this;
 	const signInAction = signin.bind(this.signinButton, this);
