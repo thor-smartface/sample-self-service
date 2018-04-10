@@ -1,7 +1,7 @@
 /* globals swipeViewIndex */
 const extend = require('js-base/core/extend');
 const ChatbotPgDesign = require('ui/ui_chatbotPg');
-const chatBotReplyStructure = require('components/ChatBotReplyStructure');
+const ChatBotReplyStructure = require('components/ChatBotReplyStructure');
 const FlexLayout = require('sf-core/ui/flexlayout');
 const addChild = require("@smartface/contx/lib/smartface/action/addChild");
 const Color = require('sf-core/ui/color');
@@ -14,12 +14,13 @@ const AlertView = require('sf-core/ui/alertview');
 const Screen = require('sf-core/device/screen');
 const Font = require('sf-core/ui/font');
 const ScrollView = require('sf-core/ui/scrollview');
-
+const ListViewItem = require('sf-core/ui/listviewitem');
+const System = require('sf-core/device/system');
+var mixinDeep = require('mixin-deep');
 
 
 
 var noInclude = '_NOINCLUDE,';
-
 
 const ChatbotPg = extend(ChatbotPgDesign)(
   // Constructor
@@ -32,23 +33,37 @@ const ChatbotPg = extend(ChatbotPgDesign)(
     this.onLoad = onLoad.bind(this, this.onLoad.bind(this));
   });
 
+function Message(params) {
+  this.message;
+  this.mainComUserProps;
+  this.chatBotLabelUserProps;
+  this.contentflUserProps;
+  this.messageIconImageViewUserProps;
+
+  if (params) {
+    for (var param in params) {
+      this[param] = params[param];
+    }
+  }
+
+}
+
 /**
  * @event onShow
  * This event is called when a page appears on the screen (everytime).
  * @param {function} superOnShow super onShow function
  * @param {Object} parameters passed from Router.go function
  */
-var myWebSocket = null;
-var heightOfChatScrollview;
+var chatbotWebSocket = null;
 
 function onShow(superOnShow) {
   superOnShow();
 
   const page = this;
 
-  this.sendLabel.onTouch = send_onPress.bind(this);
+  this.sendLabel.onTouch = clientSend.bind(this);
 
-  myWebSocket.onMessage = function(e) {
+  chatbotWebSocket.onMessage = function(e) {
     console.log("Message received." + e.string);
     var data = e.string;
 
@@ -56,16 +71,15 @@ function onShow(superOnShow) {
       var text = data;
       var constString = "Succeeded! I am navigating you to "
       var evaluateData = constString.concat(" ", text + " page.. ");
-      send_onReceived.call(page, evaluateData);
+      onReply.call(page, evaluateData);
 
       //sets timer to enable to user intract with chatbot
       nativagetFoundPage(text);
     }
     else {
       var evalateData = data.replace(noInclude, "");
-      send_onReceived.call(page, evalateData);
+      onReply.call(page, evalateData);
     }
-
     console.log("message is " + JSON.stringify(e));
   };
 }
@@ -77,190 +91,186 @@ function onShow(superOnShow) {
  */
 function onLoad(superOnLoad) {
   superOnLoad();
-  this.layoutHeaderBar.headerBarTitle.text = "ChatBot"
-  
-  
-  heightOfChatScrollview = Screen.height * 1 / 4;
-  this.chatScrollView.layout.height = heightOfChatScrollview;
 
-  // placeHolder.scrollViewPlaceHolder = new FlexLayout();
+  const page = this;
 
-  // this.chatScrollView.layout.addChild(placeHolder.scrollViewPlaceHolder, 'placeHolder', '', {
-  //   height: placeHolderHeight,
-  //   flexProps: {
-  //     positionType: "RELATIVE",
-  //     alignSelf: "FLEX_START"
-  //   },
-  //   backgroundColor: '#FFFFFF'
-  // });
+  page.chatDatas = [];
 
-  myWebSocket = new WebSocket({ url: "https://safe-sands-45992.herokuapp.com" });
+  chatbotWebSocket = new WebSocket({ url: "https://safe-sands-45992.herokuapp.com" });
 
-  this.layoutHeaderBar.rightItem1.width = 25;
-  this.layoutHeaderBar.rightItem1.height = 25;
-  this.layoutHeaderBar.rightItem1.image = Image.createFromFile("images://ic_info_outline_white.png")
+  page.layoutHeaderBar.headerBarTitle.text = "ChatBot"
 
-  var inforAlertView = new AlertView({
-    title: "Ask For",
-    message: 'Pages \n -Leave Management \n -Expense Management \n -Salary \n -Employment History \n -Employee Directory \n -Leaveapprovals \n -My Company \n Or Type for keywords as leave, approval etc.'
-  });
+  page.layoutHeaderBar.rightItem1.width = 25;
+  page.layoutHeaderBar.rightItem1.height = 25;
+  page.layoutHeaderBar.rightItem1.image = Image.createFromFile("images://ic_info_outline_white.png")
 
-  inforAlertView.addButton({
-    index: AlertView.ButtonType.POSITIVE,
-    text: "Okey",
-    onClick: function() {
-      console.log("Okey clicked.");
-    }
-  });
+  page.layoutHeaderBar.rightItem1.onTouch = function() {
+    initAlert.call(page).show();
+  }.bind(page)
 
-  this.layoutHeaderBar.rightItem1.onTouch = function() {
-    inforAlertView.show();
-  }.bind(this)
+
+  initListView.call(this);
 }
 
-function send_onPress() {
+function initListView() {
+  const page = this;
+
+  page.chatbotListview.refreshEnabled = false;
+
+  // page.chatbotListview.rowHeight = 100;
+  page.chatbotListview.itemCount = page.chatDatas.length;
+
+  page.chatbotListview.onRowHeight = function(index) {
+    var message = page.chatDatas[index];
+
+
+    return message.mainComUserProps.userStyle.maxHeight;
+  }
+  var indexListItem = 0;
+  page.chatbotListview.onRowCreate = function() {
+    var myListViewItem = new ListViewItem();
+
+    var chatBotReplyStructure = new ChatBotReplyStructure();
+    page.chatbotListview.dispatch(addChild(`item${++indexListItem}`, chatBotReplyStructure));
+
+    myListViewItem.addChild(chatBotReplyStructure, "chatBotReplyStructure");
+
+    return myListViewItem;
+  };
+
+  page.chatbotListview.onRowBind = function(listViewItem, index) {
+    var chatBotReplyStructure = listViewItem.findChildById(100);
+    var contentfl = chatBotReplyStructure.findChildById(101);
+    var messageIconImageView = chatBotReplyStructure.findChildById(102);
+    var chatBotLabel = contentfl.findChildById(103);
+
+    var chatData = page.chatDatas[index];
+
+    chatBotLabel.text = chatData.message;
+
+    if (chatData.mainComUserProps && chatData.chatBotLabelUserProps && chatData.contentflUserProps && chatData.messageIconImageViewUserProps) {
+
+      chatBotReplyStructure.dispatch(chatData.mainComUserProps);
+
+      contentfl.dispatch(chatData.contentflUserProps);
+
+      messageIconImageView.dispatch(chatData.messageIconImageViewUserProps);
+
+      chatBotLabel.dispatch(chatData.chatBotLabelUserProps);
+
+    }
+    else if (chatData.mainComUserProps) {
+      chatBotReplyStructure.dispatch(chatData.mainComUserProps);
+    }
+  };
+}
+
+//bind must be
+function clientSend() {
   const page = this;
 
   var text = page.sendText.text;
   var sizeOfLabelObj = sizeOfLabel(text);
 
   if (text) {
-
-    var userSendMessage = new chatBotReplyStructure();
-    userSendMessage.chatBotLabel.text = text;
-
-    page.chatScrollView.layout.addChild(userSendMessage, 'newSendMessage', '', {
-      marginTop: 15,
-      marginRight: 5,
-      marginLeft: 5,
-      width: null,
-      maxHeight: sizeOfLabelObj.height,
-      maxWidth: sizeOfLabelObj.width,
-      flexGrow: 1,
-      flexProps: {
+    var mainComUserProps = {
+      type: "updateUserStyle",
+      userStyle: {
+        marginTop: 15,
+        marginRight: 5,
+        marginLeft: 5,
+        width: null,
+        maxHeight: Math.ceil(sizeOfLabelObj.height),
+        maxWidth: Math.ceil(sizeOfLabelObj.width),
+        flexGrow: 1,
         flexDirection: "ROW_REVERSE",
         positionType: "RELATIVE",
         alignSelf: "FLEX_END"
-      },
-      backgroundColor: '#FFFFFF'
-    });
+      }
+    }
 
-    userSendMessage.chatBotLabel.dispatch({
+    var chatBotLabelUserProps = {
       type: "updateUserStyle",
       userStyle: {
         textColor: "#FFFFFF",
         backgroundColor: "#4A90E2"
       }
-    });
+    };
 
-    userSendMessage.contentfl.dispatch({
+    var contentflUserProps = {
       type: "updateUserStyle",
       userStyle: {
         backgroundColor: "#4A90E2"
       }
-    });
+    };
 
-    userSendMessage.messageIconImageView.dispatch({
+    var messageIconImageViewUserProps = {
       type: "updateUserStyle",
       userStyle: {
         width: 0,
         height: 0,
         visible: false
       }
-    });
-
-
-    //calculate scrollview height dynamic
-    heightOfChatScrollview += sizeOfLabelObj.height;
-    // placeHolderHeight -= sizeOfLabelObj.height;
-     this.chatScrollView.layout.height = heightOfChatScrollview;
-    // placeHolder.scrollViewPlaceHolder.dispatch({
-    //   type: "updateUserStyle",
-    //   userStyle: {
-    //     height: placeHolderHeight
-    //   }
-    // });
-
-    page.layout.applyLayout();
-
-    if (scrollBasedOnScrollHeight(page.chatScrollView.height)) {
-      page.chatScrollView.scrollToEdge(ScrollView.Edge.BOTTOM);
     };
 
+    var message = new Message({
+      message: text,
+      mainComUserProps: mainComUserProps,
+      chatBotLabelUserProps: chatBotLabelUserProps,
+      contentflUserProps: contentflUserProps,
+      messageIconImageViewUserProps: messageIconImageViewUserProps
+    });
 
-    //send to Websocket server
+    page.chatDatas.push(message);
+    updateList.call(this);
     replyToWs(text);
-    //after sending text make it empty
-    page.sendText.text = "";
   }
   else {
     alert("Please enter something");
   }
 }
 
-function scrollBasedOnScrollHeight(scrollHeight) {
-  if (heightOfChatScrollview / scrollHeight >= 1) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-function send_onReceived(text) {
+//must be bind
+function onReply(text) {
   const page = this;
 
   var sizeOfLabelObj = sizeOfLabel(text);
 
   if (text) {
 
-    var wsSendMessage = new chatBotReplyStructure();
-    wsSendMessage.chatBotLabel.text = text;
-
-    page.chatScrollView.layout.addChild(wsSendMessage, 'wsSendMessage', '', {
-      marginTop: 15,
-      marginRight: 5,
-      marginLeft: 5,
-      width: null,
-      maxWidth: sizeOfLabelObj.width,
-      maxHeight: sizeOfLabelObj.height,
-      flexGrow: 1,
-      flexProps: {
+    var mainCompUserProps = {
+      type: "updateUserStyle",
+      userStyle: {
+        marginTop: 15,
+        marginRight: 5,
+        marginLeft: 5,
+        width: null,
+        maxWidth: Math.ceil(sizeOfLabelObj.width),
+        maxHeight: Math.ceil(sizeOfLabelObj.height),
+        flexGrow: 1,
         flexDirection: "ROW",
         positionType: "RELATIVE",
-        alignSelf: "FLEX_START",
-      },
-      backgroundColor: '#FFFFFF'
+        alignSelf: "FLEX_START"
+      }
+    };
+
+    var message = new Message({
+      message: text,
+      mainComUserProps: mainCompUserProps
     });
 
-    //calculate scrollview height dynamic
-    heightOfChatScrollview += sizeOfLabelObj.height;
-    this.chatScrollView.layout.height = heightOfChatScrollview;
-    // placeHolderHeight -= sizeOfLabelObj.height;
-    // this.chatScrollView.layout.height = heightOfChatScrollview;
-    // placeHolder.scrollViewPlaceHolder.dispatch({
-    //   type: "updateUserStyle",
-    //   userStyle: {
-    //     height: placeHolderHeight
-    //   }
-    // });
+    page.chatDatas.push(message);
 
-    page.layout.applyLayout();
-
-
-    if (scrollBasedOnScrollHeight(page.chatScrollView.height)) {
-      setTimeout(function() {
-        page.chatScrollView.scrollToEdge(ScrollView.Edge.BOTTOM);
-      }, 200);
-    }
+    updateList.call(this);
   }
   else {
     alert("Please enter something");
   }
 }
 
+
 function replyToWs(text) {
-  myWebSocket.send({ data: text });
+  chatbotWebSocket.send({ data: text });
 }
 
 function nativagetFoundPage(pageName) {
@@ -286,10 +296,47 @@ function nativagetFoundPage(pageName) {
   });
 }
 
+function updateList() {
+  var page = this;
+
+  page.chatbotListview.itemCount = page.chatDatas.length;
+  page.chatbotListview.refreshData();
+  if (System.OS == "Android") {
+    Timer.setTimeout({
+      task: function() {
+        page.chatbotListview.scrollTo(page.chatDatas.length - 1);
+      },
+      delay: 100
+    });
+  }
+  else {
+    page.chatbotListview.scrollTo(page.chatDatas.length - 1);
+  }
+
+}
+
 function sizeOfLabel(text) {
   var sizeOfLabelObj = Font.create(Font.DEFAULT, 17, Font.NORMAL).sizeOfString(text, 250);
 
   return sizeOfLabelObj = { height: sizeOfLabelObj.height + 50, width: sizeOfLabelObj.width + 60 };
+}
+
+function initAlert() {
+
+  var inforAlertView = new AlertView({
+    title: "Ask For",
+    message: 'Pages \n -Leave Management \n -Expense Management \n -Salary \n -Employment History \n -Employee Directory \n -Leaveapprovals \n -My Company \n Or Type for keywords as leave, approval etc.'
+  });
+
+  inforAlertView.addButton({
+    index: AlertView.ButtonType.POSITIVE,
+    text: "Okey",
+    onClick: function() {
+      console.log("Okey clicked.");
+    }
+  });
+
+  return inforAlertView;
 }
 
 
