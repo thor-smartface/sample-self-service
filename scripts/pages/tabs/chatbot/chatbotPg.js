@@ -159,7 +159,7 @@ function initListView() {
       chatBotLabel.dispatch(chatData.chatBotLabelUserProps);
 
     }
-    else if (chatData.mainComUserProps) {
+    else {
       chatBotReplyStructure.dispatch(chatData.mainComUserProps);
     }
   };
