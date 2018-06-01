@@ -1,0 +1,11 @@
+Error: not opened
+    at WebSocket.send (/home/ubuntu/.nvm/versions/node/v6.9.2/lib/node_modules/smartfacecloud-emulator-dispatcher/node_modules/ws/lib/WebSocket.js:219:16)
+    at WebSocket.closeMe (/home/ubuntu/.nvm/versions/node/v6.9.2/lib/node_modules/smartfacecloud-emulator-dispatcher/src/debug/debugsession.js:116:14)
+    at emitTwo (events.js:111:20)
+    at WebSocket.emit (events.js:191:7)
+    at WebSocket.cleanupWebsocketResources (/home/ubuntu/.nvm/versions/node/v6.9.2/lib/node_modules/smartfacecloud-emulator-dispatcher/node_modules/ws/lib/WebSocket.js:950:8)
+    at emitNone (events.js:91:20)
+    at Socket.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:974:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:122:9)
