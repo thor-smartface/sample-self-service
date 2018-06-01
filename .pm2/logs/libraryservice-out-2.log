@@ -1,0 +1,41 @@
+Smartface libraryManager is up and running...
+Init  browser
+ReadDone:  browser   0 B
+ReadTask  transpiler
+DISCONNECTED  transpiler
+DISCONNECTED  browser
+ReadTask  transpiler
+DISCONNECTED  transpiler
+ReadTask  transpiler
+DISCONNECTED  transpiler
+Init  browser
+ReadDone:  browser   681 B
+ReadTask  transpiler
+DISCONNECTED  transpiler
+Watcher ..>  add  .  /home/ubuntu/workspace/.ui/library/verticalDivider.cpx
+Watcher ..>  add  .  /home/ubuntu/workspace/.ui/library/userSendLabel.cpx
+ReadDone:  browser   76.95 KB
+ReadDone:  browser   76.95 KB
+ReadTask  transpiler
+DISCONNECTED  transpiler
+ReadTask  transpiler
+DISCONNECTED  transpiler
+DISCONNECTED  browser
+Init  browser
+ReadDone:  browser   76.95 KB
+ReadTask  transpiler
+DISCONNECTED  transpiler
+ReadTask  transpiler
+DISCONNECTED  transpiler
+DISCONNECTED  browser
+Init  browser
+ReadDone:  browser   76.95 KB
+ReadTask  transpiler
+DISCONNECTED  transpiler
+ReadTask  transpiler
+DISCONNECTED  transpiler
+DISCONNECTED  browser
+Init  browser
+ReadDone:  browser   76.95 KB
+ReadTask  transpiler
+DISCONNECTED  transpiler

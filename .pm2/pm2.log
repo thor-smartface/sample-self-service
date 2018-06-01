@@ -1,0 +1,36 @@
+[2018-06-01 05:56:36] PM2 log: ===============================================================================
+[2018-06-01 05:56:36] PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+[2018-06-01 05:56:36] PM2 log: Time                 : Fri Jun 01 2018 05:56:36 GMT+0000 (UTC)
+[2018-06-01 05:56:36] PM2 log: PM2 version          : 2.10.3
+[2018-06-01 05:56:36] PM2 log: Node.js version      : 6.9.2
+[2018-06-01 05:56:36] PM2 log: Current arch         : x64
+[2018-06-01 05:56:36] PM2 log: PM2 home             : /home/ubuntu/workspace/.pm2
+[2018-06-01 05:56:36] PM2 log: PM2 PID file         : /home/ubuntu/workspace/.pm2/pm2.pid
+[2018-06-01 05:56:36] PM2 log: RPC socket file      : /home/ubuntu/workspace/.pm2/rpc.sock
+[2018-06-01 05:56:36] PM2 log: BUS socket file      : /home/ubuntu/workspace/.pm2/pub.sock
+[2018-06-01 05:56:36] PM2 log: Application log path : /home/ubuntu/workspace/.pm2/logs
+[2018-06-01 05:56:36] PM2 log: Process dump file    : /home/ubuntu/workspace/.pm2/dump.pm2
+[2018-06-01 05:56:36] PM2 log: Concurrent actions   : 2
+[2018-06-01 05:56:36] PM2 log: SIGTERM timeout      : 1600
+[2018-06-01 05:56:36] PM2 log: ===============================================================================
+[2018-06-01 05:56:36] PM2 log: [Watch] Start watching dispatcherservice
+[2018-06-01 05:56:36] PM2 log: Starting execution sequence in -fork mode- for app name:dispatcherservice id:0
+[2018-06-01 05:56:36] PM2 log: App name:dispatcherservice id:0 online
+[2018-06-01 05:56:44] PM2 log: [Watch] Start watching transpilerservice
+[2018-06-01 05:56:44] PM2 log: Starting execution sequence in -fork mode- for app name:transpilerservice id:1
+[2018-06-01 05:56:44] PM2 log: App name:transpilerservice id:1 online
+[2018-06-01 05:56:51] PM2 log: [Watch] Start watching libraryservice
+[2018-06-01 05:56:51] PM2 log: Starting execution sequence in -fork mode- for app name:libraryservice id:2
+[2018-06-01 05:56:51] PM2 log: App name:libraryservice id:2 online
+[2018-06-01 05:57:30] PM2 log: App [transpilerservice] with id [1] and pid [858], exited with code [0] via signal [SIGKILL]
+[2018-06-01 05:57:30] PM2 log: Starting execution sequence in -fork mode- for app name:transpilerservice id:1
+[2018-06-01 05:57:30] PM2 log: App name:transpilerservice id:1 online
+[2018-06-01 06:03:47] PM2 log: App [transpilerservice] with id [1] and pid [2250], exited with code [0] via signal [SIGKILL]
+[2018-06-01 06:03:47] PM2 log: Starting execution sequence in -fork mode- for app name:transpilerservice id:1
+[2018-06-01 06:03:47] PM2 log: App name:transpilerservice id:1 online
+[2018-06-01 06:05:52] PM2 log: App [transpilerservice] with id [1] and pid [3121], exited with code [0] via signal [SIGKILL]
+[2018-06-01 06:05:52] PM2 log: Starting execution sequence in -fork mode- for app name:transpilerservice id:1
+[2018-06-01 06:05:52] PM2 log: App name:transpilerservice id:1 online
+[2018-06-01 06:14:21] PM2 log: App [transpilerservice] with id [1] and pid [3505], exited with code [0] via signal [SIGKILL]
+[2018-06-01 06:14:21] PM2 log: Starting execution sequence in -fork mode- for app name:transpilerservice id:1
+[2018-06-01 06:14:21] PM2 log: App name:transpilerservice id:1 online
